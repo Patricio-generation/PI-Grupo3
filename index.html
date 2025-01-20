@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Hotel Gestión de Datos</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
 
+<header>
+  <h1>Dashboard - Gestión de Reservas y Pagos</h1>
+</header>
+
+<div class="container">
+
+  <!-- Card para Sincronización de Stock -->
+  <div class="card" id="stockCard">
+    <h2>Última Sincronización de Stock</h2>
+    <p id="lastSyncInfo">Fecha y hora de la última sincronización: 01/01/2025 14:30</p>
+    <div class="status up-to-date">
+      <p>Sincronización exitosa</p>
+    </div>
+  </div>
+
+  <!-- Card para Reservas -->
+  <div class="card" id="reservationsCard">
+    <h2>Reservas Activas</h2>
+    <ul id="reservationsList">
+      <li>Reserva 1 - Habitacion A - Estado: Confirmada</li>
+      <li>Reserva 2 - Habitacion B - Estado: Confirmada</li>
+      <!-- Datos dinámicos -->
+    </ul>
+    <button class="btn" onclick="showErrorLog()">Ver Errores</button>
+  </div>
+
+  <!-- Card para Pagos -->
+  <div class="card" id="paymentsCard">
+    <h2>Pagos Realizados</h2>
+    <ul id="paymentsList">
+      <li>Pago 1 - Reserva 1 - $100 - Estado: Procesado</li>
+      <li>Pago 2 - Reserva 2 - $200 - Estado: Procesado</li>
+      <!-- Datos dinámicos -->
+    </ul>
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
