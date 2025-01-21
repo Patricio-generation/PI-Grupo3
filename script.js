@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function toggleDropdown() {
   var dropdownContent = document.querySelector('.dropdown-content');
+}
 
 
   // Alternar visibilidad
@@ -51,12 +52,7 @@ function toggleDropdown() {
   } else {
     dropdownContent.style.display = 'none';
   }
-  const paymentsList = document.getElementById('paymentsList');
-  paymentsData.forEach(payment => {
-    const li = document.createElement('li');
-    li.textContent = `Pago ${payment.id} - Reserva ${payment.reserveId} - $${payment.amount} - Estado: ${payment.status}`;
-    paymentsList.appendChild(li);
-  });
+
 
   function downloadReport(section) {
     // Lógica simulada para descargar un informe
