@@ -38,7 +38,7 @@
       </a>
     </ul>
     <div>
-      <div class="user-info">
+      <div class="user-info" onclick="toggleDropdown()">
         <div class="user-avatar">
           <i class="fas fa-user"></i>
         </div>
@@ -50,6 +50,11 @@
 
         <div class="dropdown-icon">
           <i class="fas fa-caret-down"></i>
+          <div class="dropdown-content">
+            <a href="./inicio_sesion.html">
+              <button class="logout-btn">Salir</button>
+            </a>
+          </div>
         </div>
       </div>
       <div class="search-container">
@@ -61,7 +66,7 @@
     </div>
     </div>
   </nav>
-
+  <script src="../script.js"></script>
 </body>
 
 </html>
