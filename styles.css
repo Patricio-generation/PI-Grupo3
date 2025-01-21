@@ -1,3 +1,238 @@
+
+/* reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #74c0c5;
+  --secundary-color: white;
+  --accent-color: #f1f1f1;
+
+  --text-normal: 16px;
+  --text-small: 14px;
+  --text-large: 18px;
+  --text-xlarge: 24px;
+}
+
+/* estilos para el navbar*/
+.img-logo {
+  width: 100px;
+  height: 100%;
+}
+
+.navbar {
+  background: #000;
+  padding: 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.navbar ul {
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  list-style: none;
+  display: flex;
+  gap: 8px;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item i {
+  font-size: var(--text-large);
+  margin-bottom: 5px;
+  transform: scaleX(0.9);
+}
+
+.nav-item span {
+  font-size: var(--text-small);
+}
+
+.nav-item:hover,
+.active {
+  background: var(--primary-color);
+  color: var(--secundary-color);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.nav-item:not(:last-child)::after {
+  content: '|';
+  top: 50%;
+  right: -5px;
+  color: #333;
+  font-size: var(--text-xlarge);
+  position: absolute;
+  transform: translateY(-50%);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--secundary-color);
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  background-color: var(--accent-color);
+  border-radius: 15px;
+  padding: 8px 16px;
+  gap: 16px;
+  z-index: 1; /* Asegurar que esté por encima */
+}
+
+.user-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-avatar {
+  font-size: var(--text-xlarge);
+  color: var(--primary-color);
+}
+
+.dropdown-icon {
+  color: var(--primary-color);
+  margin-left: auto;
+  position: relative;
+}
+
+.user-name {
+  font-size: var(--text-normal);
+  font-weight: bold;
+  color: #777;
+}
+
+.user-role {
+  font-size: var(--text-small);
+  color: #777;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: var(--accent-color);
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-top: 8px;
+  width: 220px;
+  gap: 10px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--text-small);
+  color: #333;
+}
+
+.settings-icon {
+  font-size: var(--text-large);
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  padding: 10px;
+  right: 0;
+  top: 100%;
+  z-index: 10;
+}
+
+.dropdown-content button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Estilos para el contenido*/
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #004d7a;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2rem;
+}
+.card {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.card h2 {
+  margin-top: 0;
+  color: #333;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: #004d7a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+.btn:disabled {
+  background-color: #cccccc;
+}
+.status {
+  padding: 0.5rem;
+  background-color: #f1f1f1;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+.status.up-to-date {
+  background-color: #8bc34a;
+  color: white;
+}
+.status.problem {
+  background-color: #f44336;
+  color: white;
+
 /* Estilos generales para el cuerpo */
 body {
     font-family: Arial, sans-serif;
