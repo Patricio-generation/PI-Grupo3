@@ -1,3 +1,4 @@
+
 /* reset styles */
 * {
   box-sizing: border-box;
@@ -231,4 +232,106 @@ header {
 .status.problem {
   background-color: #f44336;
   color: white;
+
+/* Estilos generales para el cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+/* Estilos para el header */
+.header-container {
+    text-align: center;
+    background-color: #004d7a;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+/* Contenedor principal para el dashboard */
+.dashboard-container {
+    display: flex;
+    justify-content: space-between; /* Alinea los contenedores a lo largo */
+    flex-wrap: wrap; /* Permite el ajuste en dispositivos pequeños */
+    margin: 20px;
+}
+
+/* Estilo de los contenedores de cada sección */
+.contenedor {
+    width: calc(30% - 20px); /* 30% de ancho con márgenes */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 60px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px; /* Añadido espacio inferior */
+}
+
+/* Estilos para los títulos de las secciones */
+.contenedor h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Estilo para los botones */
+button {
+    margin-top: auto;
+    padding: 10px 15px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer styles */
+footer {
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilo para el centro del footer (Copyright) */
+.footer-center {
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Estilo para la sección de ayuda y soporte */
+.footer-right {
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.footer-right a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer-right a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contenedor {
+        width: calc(100% - 20px); /* En pantallas pequeñas, cada contenedor ocupa el 100% del ancho */
+    }
 }
