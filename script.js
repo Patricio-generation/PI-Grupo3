@@ -29,3 +29,31 @@
     li.textContent = `Pago ${payment.id} - Reserva ${payment.reserveId} - $${payment.amount} - Estado: ${payment.status}`;
     paymentsList.appendChild(li);
   });
+// Navbar
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", function() {
+          document.querySelectorAll(".nav-item").forEach(item => {
+              item.classList.remove("active");
+          });
+          this.parentElement.classList.add("active");
+      });
+  });
+});
+document.addEventListener("DOMContentLoaded", function() {
+  const navLinks = document.querySelectorAll(".nav-item");
+
+  navLinks.forEach(link => {
+      link.addEventListener("click", function() {
+          // Eliminar la clase "active" de todos
+          navLinks.forEach(item => item.classList.remove("active"));
+
+          // Agregar la clase "active" al seleccionado
+          this.classList.add("active");
+      });
+  });
+});
+function toggleDropdown() {
+  var dropdownContent = document.querySelector('.dropdown-content');
+  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+}
