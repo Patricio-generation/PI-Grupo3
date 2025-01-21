@@ -1,5 +1,4 @@
-
-/* reset styles */
+/* Reset styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,7 +16,7 @@
   --text-xlarge: 24px;
 }
 
-/* estilos para el navbar*/
+/* Navbar styles */
 .img-logo {
   width: 100px;
   height: 100%;
@@ -30,16 +29,14 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  position: relative;
 }
 
 .navbar ul {
-  background-color: #f1f1f1;
+  background-color: var(--accent-color);
   border-radius: 15px;
   list-style: none;
   display: flex;
   gap: 8px;
-
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -52,9 +49,9 @@
   padding: 10px;
   cursor: pointer;
   transition: 0.3s;
-  position: relative;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
 .nav-item i {
@@ -72,7 +69,6 @@
   background: var(--primary-color);
   color: var(--secundary-color);
   border-radius: 10px;
-  padding: 10px;
 }
 
 .nav-item:not(:last-child)::after {
@@ -85,13 +81,6 @@
   transform: translateY(-50%);
 }
 
-.nav-link {
-  text-decoration: none;
-  color: var(--secundary-color);
-  display: flex;
-  align-items: center;
-}
-
 .user-info {
   display: flex;
   align-items: center;
@@ -99,7 +88,7 @@
   border-radius: 15px;
   padding: 8px 16px;
   gap: 16px;
-  z-index: 1; /* Asegurar que esté por encima */
+  z-index: 1;
 }
 
 .user-names {
@@ -115,7 +104,6 @@
 .dropdown-icon {
   color: var(--primary-color);
   margin-left: auto;
-  position: relative;
 }
 
 .user-name {
@@ -127,32 +115,6 @@
 .user-role {
   font-size: var(--text-small);
   color: #777;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  background: var(--accent-color);
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin-top: 8px;
-  width: 220px;
-  gap: 10px;
-}
-
-.search-bar {
-  flex-grow: 1;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: var(--text-small);
-  color: #333;
-}
-
-.settings-icon {
-  font-size: var(--text-large);
-  cursor: pointer;
-  color: var(--primary-color);
 }
 
 .dropdown-content {
@@ -176,10 +138,38 @@
   border-radius: 5px;
 }
 
-/* Estilos para el contenido*/
+/* Search bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  background: var(--accent-color);
+  padding: 5px 10px;
+  border-radius: 15px;
+  width: 220px;
+  gap: 10px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--text-small);
+  color: #333;
+}
+
+.settings-icon {
+  font-size: var(--text-large);
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+/* Content styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -188,150 +178,132 @@ header {
   padding: 1rem 0;
   text-align: center;
 }
+
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 2rem;
+  gap: 15px;
+  padding: 20px;
+  justify-content: center;
 }
-.card {
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 45%;
-  margin-bottom: 1rem;
-  padding: 1rem;
+
+.contenedor {
+  flex: 1 1 30%;
+  max-width: 30%;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
 }
-.card h2 {
+
+.contenedor h2 {
   margin-top: 0;
+  margin-bottom: 10px;
   color: #333;
 }
-.btn {
-  padding: 10px 20px;
-  background-color: #004d7a;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
+
+.card {
+  flex: 1 1 30%;
+  max-width: 30%;
+  background-color: #eaf4ff;
+  border: 1px solid #b0d4f1;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.btn:disabled {
+
+.card h2 {
+  margin-top: 0;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Button styles */
+button {
+  margin-top: auto;
+  padding: 10px 15px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
   background-color: #cccccc;
 }
+
+/* Status styles */
 .status {
   padding: 0.5rem;
-  background-color: #f1f1f1;
-  margin-top: 1rem;
   text-align: center;
   font-weight: bold;
+  margin-top: 1rem;
 }
+
 .status.up-to-date {
   background-color: #8bc34a;
   color: white;
 }
+
 .status.problem {
   background-color: #f44336;
   color: white;
-
-/* Estilos generales para el cuerpo */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000000;
-}
-
-/* Estilos para el header */
-.header-container {
-    text-align: center;
-    background-color: #004d7a;
-    color: white;
-    padding: 20px 0;
-    margin-bottom: 20px;
-}
-
-/* Contenedor principal para el dashboard */
-.dashboard-container {
-    display: flex;
-    justify-content: space-between; /* Alinea los contenedores a lo largo */
-    flex-wrap: wrap; /* Permite el ajuste en dispositivos pequeños */
-    margin: 20px;
-}
-
-/* Estilo de los contenedores de cada sección */
-.contenedor {
-    width: calc(30% - 20px); /* 30% de ancho con márgenes */
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 60px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-bottom: 20px; /* Añadido espacio inferior */
-}
-
-/* Estilos para los títulos de las secciones */
-.contenedor h2 {
-    margin-bottom: 10px;
-    color: #333;
-}
-
-/* Estilo para los botones */
-button {
-    margin-top: auto;
-    padding: 10px 15px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 
 /* Footer styles */
 footer {
-    background-color: black;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  width: 100%;
 }
 
-/* Estilo para el centro del footer (Copyright) */
 .footer-center {
-    text-align: center;
-    flex-grow: 1;
+  text-align: center;
+  flex-grow: 1;
 }
 
-/* Estilo para la sección de ayuda y soporte */
 .footer-right {
-    text-align: right;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  text-align: right;
 }
 
 .footer-right a {
-    color: white;
-    text-decoration: none;
-    margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
 }
 
 .footer-right a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .contenedor {
-        width: calc(100% - 20px); /* En pantallas pequeñas, cada contenedor ocupa el 100% del ancho */
-    }
+  .contenedor {
+    width: calc(100% - 20px);
+  }
 }
