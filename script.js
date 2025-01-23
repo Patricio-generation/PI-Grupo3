@@ -15,36 +15,49 @@ const paymentsData = [
   { id: 2, amount: 200, status: 'Procesado', reserveId: 2 },
 ];
 
-const reservationsList = document.getElementById('reservationsList');
-reservationsData.forEach((reservation) => {
-  const li = document.createElement('li');
-  li.textContent = `Reserva ${reservation.id} - Habitacion ${reservation.room} - Estado: ${reservation.status}`;
-  reservationsList.appendChild(li);
-});
-
-const paymentsList = document.getElementById('paymentsList');
-paymentsData.forEach((payment) => {
-  const li = document.createElement('li');
-  li.textContent = `Pago ${payment.id} - Reserva ${payment.reserveId} - $${payment.amount} - Estado: ${payment.status}`;
-  paymentsList.appendChild(li);
-});
-
-// Navbar
 document.addEventListener('DOMContentLoaded', function () {
-  const navItems = document.querySelectorAll('.nav-item');
+  // Poblar datos dinámicamente
+  const reservationsList = document.getElementById('reservationsList');
+  reservationsData.forEach((reservation) => {
+    const li = document.createElement('li');
+    li.textContent = `Reserva ${reservation.id} - Habitacion ${reservation.room} - Estado: ${reservation.status}`;
+    reservationsList.appendChild(li);
+  });
 
-  navItems.forEach((item) => {
+  const paymentsList = document.getElementById('paymentsList');
+  paymentsData.forEach((payment) => {
+    const li = document.createElement('li');
+    li.textContent = `Pago ${payment.id} - Reserva ${payment.reserveId} - $${payment.amount} - Estado: ${payment.status}`;
+    paymentsList.appendChild(li);
+  });
+
+  // Navbar
+   const navItems = document.querySelectorAll('.nav-item');
+   navItems.forEach((item) => {
     item.addEventListener('click', function () {
       navItems.forEach((el) => el.classList.remove('active'));
       this.classList.add('active');
     });
   });
+
+  // Configurar botones de descarga
+  const sincronizacionButton = document.querySelector('#sincronizacion button');
+  if (sincronizacionButton) {
+    sincronizacionButton.addEventListener('click', () => {
+      downloadReport('sincronizacion');
+    });
+  }
+
+  const reservasButton = document.querySelector('#reservas button');
+  if (reservasButton) {
+    reservasButton.addEventListener('click', () => {
+      downloadReport('reservas');
+    });
+  }
 });
 
 function toggleDropdown() {
-  var dropdownContent = document.querySelector('.dropdown-content');
-}
-
+ var dropdownContent = document.querySelector('.dropdown-content');
 
   // Alternar visibilidad
   if (dropdownContent.style.display === 'none' || dropdownContent.style.display === '') {
@@ -52,11 +65,32 @@ function toggleDropdown() {
   } else {
     dropdownContent.style.display = 'none';
   }
+}
 
+function downloadReport(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) {
+    console.error(`No se encontró la sección con ID: ${sectionId}`);
+    return;
+  }
 
-  function downloadReport(section) {
-    // Lógica simulada para descargar un informe
-    alert(`Descargando informe para la sección: ${section}`);
-    // Ejemplo real (si usas un servidor backend con URL dinámica):
-    // window.location.href = `/descargar-informe?seccion=${section}`;
+  let data = '';
+  const rows = section.querySelectorAll('table tbody tr');
+
+  if (rows.length === 0) {
+    alert('No hay datos disponibles para descargar.');
+    return;
+  }
+
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    const rowData = Array.from(cells).map(cell => cell.innerText).join(',');
+    data += rowData + '\n';
+  });
+
+  const blob = new Blob([data], { type: 'text/csv' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `${sectionId}_informe.csv`;
+  link.click();
 }
