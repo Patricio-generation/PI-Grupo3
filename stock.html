@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stock - Hotel Gestión de Datos</title>
-  <link href="stylepaginas.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/359b783842.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -12,49 +12,53 @@
   <nav class="navbar">
     <img class="img-logo" src="img/chelenko_lodge_logo_logo.png" alt="Logo de Chelenko Lodge">
     <ul>
-      <a class="nav-item" href="index.html">
+      <li><a class="nav-item" href="index.html">
         <i class="fas fa-home"></i>
         <span>Inicio</span>
-      </a>
-      <a class="nav-item" href="reservas.html">
+      </a></li>
+      <li><a class="nav-item" href="reservas.html">
         <i class="fas fa-calendar-check"></i>
         <span>Reservas</span>
-      </a>
-      <a class="nav-item" href="informe.html">
+      </a></li>
+      <li><a class="nav-item" href="informe.html">
         <i class="fas fa-file-invoice"></i>
         <span>Informe</span>
-      </a>
-      <a class="nav-item active" href="stock.html">
+      </a></li>
+      <li><a class="nav-item active" href="stock.html">
         <i class="fas fa-warehouse"></i>
         <span>Stock</span>
-      </a>
-      <a class="nav-item" href="pagos.html">
+      </a></li>
+      <li><a class="nav-item" href="pagos.html">
         <i class="fas fa-dollar-sign"></i>
         <span>Pagos</span>
-      </a>
+      </a></li>
     </ul>
-    <div class="user-info">
-      <div class="user-avatar">
-        <i class="fas fa-user"></i>
-      </div>
-      <div class="user-names">
-        <p class="user-name">Nombre</p>
-        <p class="user-role">Cargo</p>
-      </div>
-      <div class="dropdown-icon" onclick="toggleDropdown()">
-        <i class="fas fa-caret-down"></i>
-        <div class="dropdown-content">
-          <a href="inicio_sesion.html">
-            <button class="logout-btn">Salir</button>
-          </a>
+  
+    <div class="navbar-right">
+      <div class="user-info">
+        <div class="user-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-names">
+          <p class="user-name">Nombre</p>
+          <p class="user-role">Cargo</p>
+        </div>
+        <div class="dropdown-icon" onclick="toggleDropdown()">
+          <i class="fas fa-caret-down"></i>
+          <div class="dropdown-content">
+            <a href="inicio_sesion.html">
+              <button class="logout-btn">Salir</button>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="search-container">
-      <input type="text" class="search-bar" placeholder="Buscar..." />
-      <a href="configuraciones.html">
-        <i class="fas fa-cog settings-icon"></i>
-      </a>
+  
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Buscar..." />
+        <a href="configuraciones.html">
+          <i class="fas fa-cog settings-icon"></i>
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -84,7 +88,7 @@
           </tr>
         </tbody>
       </table>
-      <button onclick="downloadReport('stock')">Descargar Informe</button>
+      <button id="bi" onclick="downloadReport('stock')">Descargar Informe</button>
     </div>
   </div>
 

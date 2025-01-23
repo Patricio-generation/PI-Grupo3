@@ -13,25 +13,24 @@
 
   <nav class="navbar">
     <img class="img-logo" src="img/chelenko_lodge_logo_logo.png" alt="Logo de Chelenko Lodge">
-
     <ul>
       <a class="nav-item active" href="index.html">
         <i class="fas fa-home"></i>
         <span>Inicio</span>
       </a>
-      <a class="nav-item" href="/navbar/reservas.html">
+      <a class="nav-item" href="reservas.html">
         <i class="fas fa-calendar-check"></i>
         <span>Reservas</span>
       </a>
-      <a class="nav-item" href="/navbar/informe.html">
+      <a class="nav-item" href="informe.html">
         <i class="fas fa-file-invoice"></i>
         <span>Informe</span>
       </a>
-      <a class="nav-item" href="/navbar/stock.html">
+      <a class="nav-item" href="stock.html">
         <i class="fas fa-warehouse"></i>
         <span>Stock</span>
       </a>
-      <a class="nav-item" href="/navbar/pagos.html">
+      <a class="nav-item" href="pagos.html">
         <i class="fas fa-dollar-sign"></i>
         <span>Pagos</span>
       </a>
@@ -94,7 +93,7 @@
                 </tr>
             </tbody>
         </table>
-        <button onclick="downloadReport('sincronizacion')">Descargar Informe</button>
+        <button id="bi" onclick="downloadReport('sincronizacion')">Descargar Informe</button>
     </div>
 
     <!-- Reservas -->
@@ -125,7 +124,7 @@
                 </tr>
             </tbody>
         </table>
-        <button onclick="downloadReport('reservas')">Descargar Informe</button>
+        <button id="bi" onclick="downloadReport('reservas')">Descargar Informe</button>
     </div>
 
     <!-- Pagos -->
@@ -156,7 +155,7 @@
                 </tr>
             </tbody>
         </table>
-        <button onclick="downloadReport('pagos')">Descargar Informe</button>
+        <button id="bi" onclick="downloadReport('pagos')">Descargar Informe</button>
     </div>
 
     <!-- Usuario Activo -->
