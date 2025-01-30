@@ -9,9 +9,11 @@ import Stock from './pages/Stock';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer'; // Asegúrate de importar el Footer
 import SearchBar from './components/SearchBar'; // Asegúrate de importar el SearchBar
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
+    
     <BrowserRouter>
       {/* Navbar */}
       <Navbar />
@@ -19,8 +21,11 @@ function App() {
       {/* SearchBar (puedes colocarlo aquí si es global o dentro de cada página si es específico) */}
       <SearchBar />
 
+    
+
       {/* Rutas */}
       <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Inicio />} />
         <Route path="/reservas" element={<Reservas />} />
         <Route path="/informe" element={<Informe />} />
@@ -29,6 +34,7 @@ function App() {
       </Routes>
 
       {/* Footer */}
+
       <Footer />
     </BrowserRouter>
   );

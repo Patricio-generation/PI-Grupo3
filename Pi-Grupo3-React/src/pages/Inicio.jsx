@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer';
+import FormularioSincronizado from '../components/FormularioSincronizado'; // Importa el formulario
 import '../assets/styles.css';
 
 const Inicio = () => {
@@ -138,6 +139,12 @@ const Inicio = () => {
           <button id="bi" onClick={() => downloadReport('pagos')}>
             Descargar Informe
           </button>
+        </div>
+
+        {/* Nueva sección para el formulario de sincronización */}
+        <div className="contenedor container-fluid mt-1">
+          <h2>Formulario de Contacto</h2>
+          <FormularioSincronizado />
         </div>
       </div>
       <Footer />
