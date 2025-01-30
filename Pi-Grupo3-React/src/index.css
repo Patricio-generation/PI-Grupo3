@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #4ac6ba;
+  --secundary-color: white;
+  --accent-color: #f1f1f1;
+  --hover-color: #3ba99e;
+  --background-color: #f4f4f4;
+  --header-color: #000000;
+  --footer-color: #000;
+
+  --text-normal: 16px;
+  --text-small: 14px;
+  --text-large: 18px;
+  --text-xlarge: 24px;
+}
