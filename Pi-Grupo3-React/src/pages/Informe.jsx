@@ -1,13 +1,11 @@
 // src/pages/Informe.jsx
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
+import { useState } from 'react';
 import '../assets/styles.css';
+import Footer from '../components/Footer';
 
 const Informe = () => {
   // Estado para los datos de informe
-  const [informeData, setInformeData] = useState([
+  const [informeData] = useState([
     {
       id: 1,
       fecha: '2025-01-20',
@@ -43,7 +41,9 @@ const Informe = () => {
     // Generar el contenido del CSV
     rows.forEach((row) => {
       const cells = row.querySelectorAll('td');
-      const rowData = Array.from(cells).map((cell) => cell.innerText).join(',');
+      const rowData = Array.from(cells)
+        .map((cell) => cell.innerText)
+        .join(',');
       data += rowData + '\n';
     });
 
@@ -57,13 +57,14 @@ const Informe = () => {
 
   return (
     <div>
-      <Navbar />
-      <SearchBar />
-      <div className="container-fluid">
+      <div className='container-fluid'>
         {/* Sección de Informe */}
-        <div className="contenedor container-fluid table-responsive mt-1" id="informe">
+        <div className='contenedor container-fluid table-responsive mt-1' id='informe'>
           <h2>Informe de Actividades</h2>
-          <p>A continuación se muestran los informes detallados de las actividades realizadas.</p>
+          <p>
+            A continuación se muestran los informes detallados de las actividades
+            realizadas.
+          </p>
           <table>
             <thead>
               <tr>
@@ -84,7 +85,7 @@ const Informe = () => {
               ))}
             </tbody>
           </table>
-          <button id="bi" onClick={() => downloadReport('informe')}>
+          <button id='bi' onClick={() => downloadReport('informe')}>
             Descargar Informe
           </button>
         </div>
