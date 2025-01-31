@@ -1,6 +1,7 @@
 import '../assets/styles.css';
 import Footer from '../components/Footer';
 import FormularioSincronizado from '../components/FormularioSincronizado'; // Importa el formulario
+import Dashboard from '../components/Dashboard';
 
 const Inicio = () => {
   // Función para descargar el informe en formato CSV
@@ -39,6 +40,7 @@ const Inicio = () => {
   return (
     <div>
       <div className='container-fluid'>
+        <Dashboard />
         {/* Sección de Sincronización de Stock */}
         <div
           className='contenedor container-fluid table-responsive mt-1'
