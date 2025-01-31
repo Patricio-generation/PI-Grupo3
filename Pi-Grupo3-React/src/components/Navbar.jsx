@@ -45,9 +45,9 @@ function NavBar() {
 
       <div className='search-container'>
         <input type='text' className='search-bar' placeholder='Buscar...' />
-        <a to='/'>
+        <Link to='/'>
           <i className='fas fa-cog settings-icon'></i>
-        </a>
+        </Link>
       </div>
     </>
   );

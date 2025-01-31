@@ -1,13 +1,11 @@
 // src/pages/Pagos.jsx
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
+import { useState } from 'react';
 import '../assets/styles.css';
+import Footer from '../components/Footer';
 
 const Pagos = () => {
   // Estado para los datos de pagos
-  const [paymentsData, setPaymentsData] = useState([
+  const [paymentsData] = useState([
     { id: 1, date: '2025-01-20', client: 'Juan Pérez', amount: 150.0, method: 'Tarjeta' },
     { id: 2, date: '2025-01-19', client: 'Ana López', amount: 200.0, method: 'PayPal' },
   ]);
@@ -31,7 +29,9 @@ const Pagos = () => {
     // Generar el contenido del CSV
     rows.forEach((row) => {
       const cells = row.querySelectorAll('td');
-      const rowData = Array.from(cells).map((cell) => cell.innerText).join(',');
+      const rowData = Array.from(cells)
+        .map((cell) => cell.innerText)
+        .join(',');
       data += rowData + '\n';
     });
 
@@ -45,11 +45,9 @@ const Pagos = () => {
 
   return (
     <div>
-      <Navbar />
-      <SearchBar />
-      <div className="container-fluid">
+      <div className='container-fluid'>
         {/* Sección de Pagos */}
-        <div className="contenedor container-fluid table-responsive mt-1" id="pagos">
+        <div className='contenedor container-fluid table-responsive mt-1' id='pagos'>
           <h2>Historial de Pagos</h2>
           <p>A continuación se detallan los pagos realizados por los clientes.</p>
           <table>
@@ -72,7 +70,7 @@ const Pagos = () => {
               ))}
             </tbody>
           </table>
-          <button id="bi" onClick={() => downloadReport('pagos')}>
+          <button id='bi' onClick={() => downloadReport('pagos')}>
             Descargar Informe
           </button>
         </div>

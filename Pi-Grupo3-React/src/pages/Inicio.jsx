@@ -1,9 +1,6 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
-import SearchBar from '../components/SearchBar';
+import '../assets/styles.css';
 import Footer from '../components/Footer';
 import FormularioSincronizado from '../components/FormularioSincronizado'; // Importa el formulario
-import '../assets/styles.css';
 
 const Inicio = () => {
   // Función para descargar el informe en formato CSV
@@ -25,7 +22,9 @@ const Inicio = () => {
     // Generar el contenido del CSV
     rows.forEach((row) => {
       const cells = row.querySelectorAll('td');
-      const rowData = Array.from(cells).map((cell) => cell.innerText).join(',');
+      const rowData = Array.from(cells)
+        .map((cell) => cell.innerText)
+        .join(',');
       data += rowData + '\n';
     });
 
@@ -39,11 +38,12 @@ const Inicio = () => {
 
   return (
     <div>
-      <Navbar />
-      <SearchBar />
-      <div className="container-fluid">
+      <div className='container-fluid'>
         {/* Sección de Sincronización de Stock */}
-        <div className="contenedor container-fluid table-responsive mt-1" id="sincronizacion">
+        <div
+          className='contenedor container-fluid table-responsive mt-1'
+          id='sincronizacion'
+        >
           <h2>Sincronización de Stock</h2>
           <p>Registro de las sincronizaciones realizadas con las OTAs.</p>
           <table>
@@ -70,13 +70,13 @@ const Inicio = () => {
               </tr>
             </tbody>
           </table>
-          <button id="bi" onClick={() => downloadReport('sincronizacion')}>
+          <button id='bi' onClick={() => downloadReport('sincronizacion')}>
             Descargar Informe
           </button>
         </div>
 
         {/* Sección de Reservas */}
-        <div className="contenedor container-fluid table-responsive mt-1" id="reservas">
+        <div className='contenedor container-fluid table-responsive mt-1' id='reservas'>
           <h2>Reservas</h2>
           <p>Resumen de las reservas realizadas recientemente.</p>
           <table>
@@ -103,13 +103,13 @@ const Inicio = () => {
               </tr>
             </tbody>
           </table>
-          <button id="bi" onClick={() => downloadReport('reservas')}>
+          <button id='bi' onClick={() => downloadReport('reservas')}>
             Descargar Informe
           </button>
         </div>
 
         {/* Sección de Pagos */}
-        <div className="contenedor container-fluid table-responsive mt-1" id="pagos">
+        <div className='contenedor container-fluid table-responsive mt-1' id='pagos'>
           <h2>Pagos</h2>
           <p>Información detallada sobre las transacciones de pagos.</p>
           <table>
@@ -136,13 +136,13 @@ const Inicio = () => {
               </tr>
             </tbody>
           </table>
-          <button id="bi" onClick={() => downloadReport('pagos')}>
+          <button id='bi' onClick={() => downloadReport('pagos')}>
             Descargar Informe
           </button>
         </div>
 
         {/* Nueva sección para el formulario de sincronización */}
-        <div className="contenedor container-fluid mt-1">
+        <div className='contenedor container-fluid mt-1'>
           <h2>Formulario de Contacto</h2>
           <FormularioSincronizado />
         </div>

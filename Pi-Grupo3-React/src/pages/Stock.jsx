@@ -1,13 +1,11 @@
 // src/pages/Stock.jsx
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
+import { useState } from 'react';
 import '../assets/styles.css';
+import Footer from '../components/Footer';
 
 const Stock = () => {
   // Estado para los datos de stock
-  const [stockData, setStockData] = useState([
+  const [stockData] = useState([
     { id: 1, product: 'Toallas', quantity: 50, lastUpdated: '2025-01-20' },
     { id: 2, product: 'Jabones', quantity: 200, lastUpdated: '2025-01-19' },
   ]);
@@ -31,7 +29,9 @@ const Stock = () => {
     // Generar el contenido del CSV
     rows.forEach((row) => {
       const cells = row.querySelectorAll('td');
-      const rowData = Array.from(cells).map((cell) => cell.innerText).join(',');
+      const rowData = Array.from(cells)
+        .map((cell) => cell.innerText)
+        .join(',');
       data += rowData + '\n';
     });
 
@@ -45,13 +45,14 @@ const Stock = () => {
 
   return (
     <div>
-      <Navbar />
-      <SearchBar />
-      <div className="container-fluid">
+      <div className='container-fluid'>
         {/* Sección de Stock */}
-        <div className="contenedor container-fluid table-responsive mt-1" id="stock">
+        <div className='contenedor container-fluid table-responsive mt-1' id='stock'>
           <h2>Gestión de Stock</h2>
-          <p>A continuación se detallan los productos y servicios disponibles en el stock del hotel.</p>
+          <p>
+            A continuación se detallan los productos y servicios disponibles en el stock
+            del hotel.
+          </p>
           <table>
             <thead>
               <tr>
@@ -70,7 +71,7 @@ const Stock = () => {
               ))}
             </tbody>
           </table>
-          <button id="bi" onClick={() => downloadReport('stock')}>
+          <button id='bi' onClick={() => downloadReport('stock')}>
             Descargar Informe
           </button>
         </div>
