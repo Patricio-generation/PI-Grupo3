@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/Card';
+import Card from './Card';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import '../assets/styles.css';
 
