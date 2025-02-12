@@ -1,38 +1,38 @@
-import payment from '../Models/Payment.js';
+const Payment = require('../Models/Payment.js');
 
-// crear un nuevo pago
-export const createPayment = async (req, res) => {
+// Crear un nuevo pago
+exports.createPayment = async (req, res) => {
     try {
-        const newPayment = new payment(req.body);
+        const newPayment = new Payment(req.body);
         await newPayment.save();
-        res.status(201).json({ message: "Pago creado con éxito", data: newPayment });
+        res.status(201).json({ message: "Pago creado con éxito", data: newPayment });
     } catch (error) {
         res.status(500).json({ message: "Error al registrar el pago", error: error.message });
     }
 };
 
-// obtener todos los pagos
-export const getPayments = async (req, res) => {
- try {
-    const payments = await payment.find();
-    res.status(200).json({ message: "Pagos obtenidos con éxito", data: payments }); 
- } catch (error) {
-    res.status(500).json({ message: "Error al obtener los pagos", error: error.message });
- }   
+// Obtener todos los pagos
+exports.getPayments = async (req, res) => {
+    try {
+        const payments = await Payment.find();
+        res.status(200).json({ message: "Pagos obtenidos con éxito", data: payments });
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener los pagos", error: error.message });
+    }
 };
 
-// actualizar un pago
-export const updatePayment = async (req, res) => {
+// Actualizar un pago
+exports.updatePayment = async (req, res) => {
     try {
-        const updatePayment = await payment.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.status(200).json({ message: "Pago actualizado con éxito", data: updatePayment });
+        const updatedPayment = await Payment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).json({ message: "Pago actualizado con éxito", data: updatedPayment });
     } catch (error) {
         res.status(500).json({ message: "Error al actualizar el pago", error: error.message });
     }
 };
 
-// eliminar un pago
-export const deletePayment = async (req, res) => {
+// Eliminar un pago
+exports.deletePayment = async (req, res) => {
     try {
         const deletedPayment = await Payment.findByIdAndDelete(req.params.id);
         

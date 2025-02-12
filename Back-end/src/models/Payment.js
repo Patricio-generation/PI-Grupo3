@@ -33,4 +33,7 @@ const paymentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Payment", paymentSchema);
+// Verifica si el modelo ya existe y usa ese modelo, de lo contrario lo crea.
+const Payment = mongoose.models.Payment || mongoose.model("Payment", paymentSchema);
+
+module.exports = Payment;

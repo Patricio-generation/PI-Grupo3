@@ -1,46 +1,43 @@
-import Cabin from "../models/Cabin.js";
+const Cabin = require("../models/Cabin.js");
 
 // Crear una cabaña
-export const createCabin = async (req, res) => {
+exports.createCabin = async (req, res) => {
     try {
-const newCabin = new Cabin(req.body);
-await newCabin.save();
-res.status(201).json({ message: "Cabaña creada con éxito.", data: newCabin });
-} catch (error) {
-res.status(500).json({ message: "Error al crear la cabaña.", error: error.message });
-}
+        const newCabin = new Cabin(req.body);
+        await newCabin.save();
+        res.status(201).json({ message: "Cabaña creada con éxito.", data: newCabin });
+    } catch (error) {
+        res.status(500).json({ message: "Error al crear la cabaña.", error: error.message });
+    }
 };
-
 
 // Obtener todas las cabañas
-export const getCabins = async (req, res) => {
+exports.getCabins = async (req, res) => {
     try {
-const cabins = await Cabin.find();
-res.status(200).json(cabins);
-} catch (error) {
-res.status(500).json({ message: "Error al obtener las cabañas.", error: error.message });
-}
+        const cabins = await Cabin.find();
+        res.status(200).json(cabins);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener las cabañas.", error: error.message });
+    }
 };
-
 
 // Actualizar una cabaña
-export const updateCabin = async (req, res) => {
+exports.updateCabin = async (req, res) => {
     try {
-const updatedCabin = await Cabin.findByIdAndUpdate(req.params.id, req.body, { new: true });
-res.status(200).json({ message: "Cabaña actualizada con éxito.", data: updatedCabin });
-} catch (error) {
-res.status(500).json({ message: "Error al actualizar la cabaña.", error: error.message });
-}
+        const updatedCabin = await Cabin.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).json({ message: "Cabaña actualizada con éxito.", data: updatedCabin });
+    } catch (error) {
+        res.status(500).json({ message: "Error al actualizar la cabaña.", error: error.message });
+    }
 };
 
-
 // Eliminar una cabaña
-export const deleteCabin = async (req, res) => {
+exports.deleteCabin = async (req, res) => {
     try {
-const deletedCabin = await Cabin.findByIdAndDelete(req.params.id);
-if (!deletedCabin) return res.status(404).json({ message: "Cabaña no encontrada." });
-res.status(200).json({ message: "Cabaña eliminada con éxito.", data: deletedCabin });
-} catch (error) {
-res.status(500).json({ message: "Error al eliminar la cabaña.", error: error.message });
-}
+        const deletedCabin = await Cabin.findByIdAndDelete(req.params.id);
+        if (!deletedCabin) return res.status(404).json({ message: "Cabaña no encontrada." });
+        res.status(200).json({ message: "Cabaña eliminada con éxito.", data: deletedCabin });
+    } catch (error) {
+        res.status(500).json({ message: "Error al eliminar la cabaña.", error: error.message });
+    }
 };
