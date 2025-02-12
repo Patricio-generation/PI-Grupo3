@@ -1,4 +1,4 @@
-import Reservation from '../Models/Reservation.js';
+import Reservation from '../models/Reservation.js';
 
 //crear una nueva reserva
 export const createReservation = async (req, res) => {
@@ -12,7 +12,7 @@ export const createReservation = async (req, res) => {
 };
 
 // obtener todas las reservas
-export const getAllReservations = async (req, res) => {
+export const getReservations = async (req, res) => {
     try {
         const reservations = await Reservation.find().populate("client").populate("cabin");
         res.status(200).json({ message: "Reservas obtenidas con éxito", data: reservations });

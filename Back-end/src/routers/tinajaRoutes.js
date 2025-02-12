@@ -1,3 +1,7 @@
+import express from "express";
+import { createTinajaBooking, getTinajaBookings, updateTinajaBooking } from "../controllers/tinajaController.js";
+
+
 const router = express.Router();
 
 
