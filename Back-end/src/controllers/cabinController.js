@@ -1,43 +1,56 @@
-const Cabin = require("../models/Cabin.js");
+const Cabin = require("../models/Cabin");
 
-// Crear una cabaña
+exports.getAllCabins = async (req, res) => {
+  try {
+    const cabins = await Cabin.find();
+    res.json(cabins);
+  
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getCabinById = async (req, res) => {
+  try {
+    const cabin = await Cabin.findById(req.params.id);
+    if (!cabin) return res.status(404).json({ message: "Cabina no encontrada" });
+    res.json(cabin);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.createCabin = async (req, res) => {
-    try {
-        const newCabin = new Cabin(req.body);
-        await newCabin.save();
-        res.status(201).json({ message: "Cabaña creada con éxito.", data: newCabin });
-    } catch (error) {
-        res.status(500).json({ message: "Error al crear la cabaña.", error: error.message });
-    }
+  try {
+    const cabin = new Cabin(req.body);
+    await cabin.save();
+    res.status(201).json({
+      message: "Cabina creada con éxito.",
+      data: cabin
+    });
+    
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-// Obtener todas las cabañas
-exports.getCabins = async (req, res) => {
-    try {
-        const cabins = await Cabin.find();
-        res.status(200).json(cabins);
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener las cabañas.", error: error.message });
-    }
-};
-
-// Actualizar una cabaña
 exports.updateCabin = async (req, res) => {
-    try {
-        const updatedCabin = await Cabin.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.status(200).json({ message: "Cabaña actualizada con éxito.", data: updatedCabin });
-    } catch (error) {
-        res.status(500).json({ message: "Error al actualizar la cabaña.", error: error.message });
-    }
+  try {
+    const cabin = await Cabin.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!cabin) return res.status(404).json({ message: "Cabina no encontrada" });
+    res.status(200).json({ message: "Cabina actualizada exitosamente", cabin });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-// Eliminar una cabaña
+
 exports.deleteCabin = async (req, res) => {
-    try {
-        const deletedCabin = await Cabin.findByIdAndDelete(req.params.id);
-        if (!deletedCabin) return res.status(404).json({ message: "Cabaña no encontrada." });
-        res.status(200).json({ message: "Cabaña eliminada con éxito.", data: deletedCabin });
-    } catch (error) {
-        res.status(500).json({ message: "Error al eliminar la cabaña.", error: error.message });
-    }
+  try {
+    const cabin = await Cabin.findByIdAndDelete(req.params.id);
+    if (!cabin) return res.status(404).json({ message: "Cabina no encontrada" });
+    res.json({ message: "Cabina eliminada" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };

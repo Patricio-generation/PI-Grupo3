@@ -1,47 +1,50 @@
-const Payment = require('../Models/Payment.js');
+const Payment = require("../models/Payment");
 
-// Crear un nuevo pago
+exports.getAllPayments = async (req, res) => {
+  try {
+    const payments = await Payment.find().populate("reservation");
+    res.json(payments);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getPaymentById = async (req, res) => {
+  try {
+    const payment = await Payment.findById(req.params.id).populate("reservation");
+    if (!payment) return res.status(404).json({ message: "Pago no encontrado" });
+    res.json(payment);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.createPayment = async (req, res) => {
-    try {
-        const newPayment = new Payment(req.body);
-        await newPayment.save();
-        res.status(201).json({ message: "Pago creado con éxito", data: newPayment });
-    } catch (error) {
-        res.status(500).json({ message: "Error al registrar el pago", error: error.message });
-    }
+  try {
+    const payment = new Payment(req.body);
+    await payment.save();
+    res.status(201).json(payment);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
-// Obtener todos los pagos
-exports.getPayments = async (req, res) => {
-    try {
-        const payments = await Payment.find();
-        res.status(200).json({ message: "Pagos obtenidos con éxito", data: payments });
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener los pagos", error: error.message });
-    }
-};
-
-// Actualizar un pago
 exports.updatePayment = async (req, res) => {
-    try {
-        const updatedPayment = await Payment.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.status(200).json({ message: "Pago actualizado con éxito", data: updatedPayment });
-    } catch (error) {
-        res.status(500).json({ message: "Error al actualizar el pago", error: error.message });
-    }
+  try {
+    const payment = await Payment.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate("reservation");
+    if (!payment) return res.status(404).json({ message: "Pago no encontrado" });
+    res.json(payment);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
-// Eliminar un pago
 exports.deletePayment = async (req, res) => {
-    try {
-        const deletedPayment = await Payment.findByIdAndDelete(req.params.id);
-        
-        if (!deletedPayment) {
-            return res.status(404).json({ message: "Pago no encontrado" });
-        }
-
-        res.status(200).json({ message: "Pago eliminado con éxito", data: deletedPayment });
-    } catch (error) {
-        res.status(500).json({ message: "Error al eliminar el pago", error: error.message });
-    }
+  try {
+    const payment = await Payment.findByIdAndDelete(req.params.id);
+    if (!payment) return res.status(404).json({ message: "Pago no encontrado" });
+    res.json({ message: "Pago eliminado correctamente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

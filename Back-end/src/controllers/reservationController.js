@@ -1,32 +1,52 @@
-const Reservation = require('../models/Reservation.js');
+const Reservation = require("../models/Reservation");
 
-// Crear una nueva reserva
+exports.getAllReservations = async (req, res) => {
+  try {
+    const reservations = await Reservation.find().populate("cabin").populate("client");
+    res.json(reservations);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getReservationById = async (req, res) => {
+  try {
+    const reservation = await Reservation.findById(req.params.id).populate("cabin").populate("client");
+    if (!reservation) return res.status(404).json({ message: "Reserva no encontrada" });
+    res.json(reservation);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.createReservation = async (req, res) => {
-    try {
-        const newReservation = new Reservation(req.body);
-        await newReservation.save();
-        res.status(201).json({ message: "Reserva creada con éxito", data: newReservation });
-    } catch (error) {
-        res.status(500).json({ message: "Error al crear la reserva", error: error.message });
-    }
+  try {
+    const reservation = new Reservation(req.body);
+    await reservation.save();
+    res.status(201).json(reservation);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
-// Obtener todas las reservas
-exports.getReservations = async (req, res) => {
-    try {
-        const reservations = await Reservation.find().populate("client").populate("cabin");
-        res.status(200).json({ message: "Reservas obtenidas con éxito", data: reservations });
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener las reservas", error: error.message });
-    }
-};
-
-// Actualizar una reserva existente
 exports.updateReservation = async (req, res) => {
-    try {
-        const updatedReservation = await Reservation.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.status(200).json({ message: "Reserva actualizada con éxito", data: updatedReservation });
-    } catch (error) {
-        res.status(500).json({ message: "Error al actualizar la reserva", error: error.message });
-    }
+  try {
+    const reservation = await Reservation.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .populate("cabin")
+      .populate("client");
+    if (!reservation) return res.status(404).json({ message: "Reserva no encontrada" });
+    res.json(reservation);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+exports.deleteReservation = async (req, res) => {
+  try {
+    const reservation = await Reservation.findByIdAndDelete(req.params.id);
+    if (!reservation) return res.status(404).json({ message: "Reserva no encontrada" });
+    res.json({ message: "Reserva eliminada correctamente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

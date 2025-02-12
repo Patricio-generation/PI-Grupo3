@@ -1,12 +1,12 @@
 const express = require("express");
-const { createCabin, getCabins, updateCabin, deleteCabin } = require("../controllers/cabinController.js");
+const cabinController = require("../controllers/cabinController");
 
 const router = express.Router();
 
-// Rutas para Cabañas
-router.post("/", createCabin); // Crear cabaña
-router.get("/", getCabins); // Obtener todas las cabañas
-router.put("/:id", updateCabin); // Actualizar una cabaña
-router.delete("/:id", deleteCabin); // Eliminar una cabaña
+router.get("/", cabinController.getAllCabins);
+router.get("/:id", cabinController.getCabinById);
+router.post("/", cabinController.createCabin);
+router.put("/:id", cabinController.updateCabin);
+router.delete("/:id", cabinController.deleteCabin);
 
 module.exports = router;

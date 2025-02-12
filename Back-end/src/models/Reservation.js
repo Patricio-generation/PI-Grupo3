@@ -7,14 +7,10 @@ const reservationSchema = new mongoose.Schema(
       ref: "Cabin",
       required: true,
     },
-    clientDocumentType: {
-      type: String,
-      required: true,
-    },
-    clientDocumentNumber: {
-      type: String,
-      required: true,
+    client: { // Este campo es ahora el referencial hacia Client
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
+      required: true,
     },
     checkinDate: {
       type: Date,

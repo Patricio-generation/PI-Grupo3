@@ -1,11 +1,12 @@
 const express = require("express");
-const { registerUser, loginUser, getUsers } = require("../controllers/userController.js");
-
 const router = express.Router();
+const userController = require("../controllers/userController");
 
-// Rutas para usuarios
-router.post("/register", registerUser); // Registro de usuario
-router.post("/login", loginUser); // Inicio de sesión
-router.get("/", getUsers); // Obtener todos los usuarios
+router.post("/register", userController.registerUser);
+router.post("/login", userController.loginUser);
+router.get("/", userController.getUsers);
+router.get("/:id", userController.getUserById);
+router.put("/:id", userController.updateUser);
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;

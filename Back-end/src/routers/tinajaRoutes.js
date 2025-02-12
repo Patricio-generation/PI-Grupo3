@@ -1,11 +1,11 @@
 const express = require("express");
-const { createTinajaBooking, getTinajaBookings, updateTinajaBooking } = require("../controllers/tinajaController.js");
-
 const router = express.Router();
+const tinajaBookingController = require("../controllers/tinajaController");
 
-// Rutas para reservas de tinajas
-router.post("/", createTinajaBooking); // Crear reserva de tinaja
-router.get("/", getTinajaBookings); // Obtener reservas de tinaja
-router.put("/:id", updateTinajaBooking); // Actualizar una reserva de tinaja
+router.post("/", tinajaBookingController.createTinajaBooking);
+router.get("/", tinajaBookingController.getTinajaBookings);
+router.get("/:id", tinajaBookingController.getTinajaBookingById);
+router.put("/:id", tinajaBookingController.updateTinajaBooking);
+router.delete("/:id", tinajaBookingController.deleteTinajaBooking);
 
 module.exports = router;
