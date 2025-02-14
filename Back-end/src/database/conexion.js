@@ -7,6 +7,7 @@ const dbConnection = async () => { //palabra reservada async que dentro de la fu
         try {
            //palabra reserveda await espere la respuesta de la conexion 
             await mongoose.connect(process.env.MONGO_URL) //es asincronica porque hace uso de un metodo externo
+            // await mongoose.connect(http://127.0.0.1:3000)
             console.log("conexion a la base de datos exitosa ");
 
 

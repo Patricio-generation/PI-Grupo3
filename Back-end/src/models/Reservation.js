@@ -7,7 +7,7 @@ const reservationSchema = new mongoose.Schema(
       ref: "Cabin",
       required: true,
     },
-    client: { // Este campo es ahora el referencial hacia Client
+    client: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
       required: true,
@@ -45,6 +45,11 @@ const reservationSchema = new mongoose.Schema(
     isHistorical: {
       type: Boolean,
       default: false,
+    },
+    source: {
+      type: String,
+      required: true,
+      enum: ["Directa", "Sitio Web", "Booking", "Social Media"], // Agrega más opciones según los canales disponibles
     },
   },
   { timestamps: true }
