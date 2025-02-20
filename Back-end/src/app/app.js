@@ -1,6 +1,7 @@
 const express = require("express"); /// requerimos express
 const morgan = require("morgan"); // requerimos morgan 
 const apiKeyAuth = require("../middleware/apiKeyAuth"); // Importamos el middleware
+const cors = require('cors'); // Para permitir peticiones desde el frontend
 
 const app = express();
 
@@ -14,6 +15,7 @@ const cabinRoutes = require("../routers/cabinRoutes.js");
 // Middlewares
 app.use(morgan("dev")); // función middleware de terceros
 app.use(express.json()); // Permite recibir JSON
+app.use(cors());
 
 // Aplico API Key Auth a todas las rutas protegidas
 app.use("/api/users", apiKeyAuth, userRoutes);

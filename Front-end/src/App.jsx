@@ -9,6 +9,7 @@ import Pagos from './pages/Pagos';
 import Stock from './pages/Stock';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Usuarios from './pages/Usuarios';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/informe' element={<Informe />} />
         <Route path='/stock' element={<Stock />} />
         <Route path='/pagos' element={<Pagos />} />
+        <Route path='/usuarios' element={<Usuarios />} />
       </Routes>
 
       <Footer />
