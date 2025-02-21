@@ -1,26 +1,11 @@
 // src/pages/Reservas.jsx
-import { useState } from 'react';
+import { useContext } from 'react';
 import '../assets/styles.css';
 import Footer from '../components/Footer';
+import { ApiContext } from '../context/ApiContext';
 
 const Reservas = () => {
-  // Estado para los datos de reservas
-  const [reservationsData] = useState([
-    {
-      id: 1,
-      date: '2025-01-20',
-      client: 'Juan Pérez',
-      room: 'Suite Deluxe',
-      status: 'Confirmada',
-    },
-    {
-      id: 2,
-      date: '2025-01-19',
-      client: 'Ana López',
-      room: 'Habitación Doble',
-      status: 'Cancelada',
-    },
-  ]);
+  const { reservations: reservationsData } = useContext(ApiContext);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
@@ -68,16 +53,16 @@ const Reservas = () => {
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Habitación</th>
-                <th>Estado</th>
+                <th>Origen</th>
               </tr>
             </thead>
             <tbody>
               {reservationsData.map((reservation) => (
-                <tr key={reservation.id}>
-                  <td>{reservation.date}</td>
-                  <td>{reservation.client}</td>
-                  <td>{reservation.room}</td>
-                  <td>{reservation.status}</td>
+                <tr key={reservation._id}>
+                  <td>{reservation.createdAt}</td>
+                  <td>{reservation.client.name}</td>
+                  <td>{reservation.cabin.number}</td>
+                  <td>{reservation.source}</td>
                 </tr>
               ))}
             </tbody>
