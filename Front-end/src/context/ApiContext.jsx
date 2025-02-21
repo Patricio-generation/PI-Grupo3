@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState, useEffect } from 'react';
+import API from '../services/Api';
 
 export const ApiContext = createContext();
 
@@ -31,14 +31,14 @@ export const ApiProvider = ({ children }) => {
         tinajaBookingRes,
         userRes,
       ] = await Promise.all([
-        axios.get("/api/cabins"),
-        axios.get("/api/clients"),
-        axios.get("/api/reservations"),
-        axios.get("/api/payments"),
-        axios.get("/api/historical-payments"),
-        axios.get("/api/historical-reservations"),
-        axios.get("/api/tinaja-bookings"),
-        axios.get("/api/users"),
+        API.get('/cabins'),
+        API.get('/clients'),
+        API.get('/reservations'),
+        API.get('/payments'),
+        API.get('/historical-payments'),
+        API.get('/historical-reservations'),
+        API.get('/tinaja-bookings'),
+        API.get('/users'),
       ]);
 
       setCabins(cabinRes.data);
@@ -50,7 +50,7 @@ export const ApiProvider = ({ children }) => {
       setTinajaBookings(tinajaBookingRes.data);
       setUsers(userRes.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     } finally {
       setLoading(false);
     }
