@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-
+import { ApiProvider } from './context/ApiContext';
 
 import Inicio from './pages/Inicio';
 import Reservas from './pages/Reservas';
@@ -14,20 +14,20 @@ import Usuarios from './pages/Usuarios';
 function App() {
   return (
     <ApiProvider>
-    <BrowserRouter>
-      <Navbar />
+      <BrowserRouter>
+        <Navbar />
 
-      <Routes>
-        <Route path='/' element={<Inicio />} />
-        <Route path='/reservas' element={<Reservas />} />
-        <Route path='/informe' element={<Informe />} />
-        <Route path='/stock' element={<Stock />} />
-        <Route path='/pagos' element={<Pagos />} />
-        <Route path='/usuarios' element={<Usuarios />} />
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Inicio />} />
+          <Route path='/reservas' element={<Reservas />} />
+          <Route path='/informe' element={<Informe />} />
+          <Route path='/stock' element={<Stock />} />
+          <Route path='/pagos' element={<Pagos />} />
+          <Route path='/usuarios' element={<Usuarios />} />
+        </Routes>
 
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
     </ApiProvider>
   );
 }
