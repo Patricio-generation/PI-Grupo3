@@ -1,14 +1,16 @@
-// src/pages/Pagos.jsx
-import { useState } from 'react';
+import React, { useEffect } from 'react';
 import '../assets/styles.css';
 import Footer from '../components/Footer';
+import { useApiContext } from '../context/ApiContext'; // Importa el contexto
+import PaymentTable from '../components/paymentTable'; // Importa el componente
 
 const Pagos = () => {
-  // Estado para los datos de pagos
-  const [paymentsData] = useState([
-    { id: 1, date: '2025-01-20', client: 'Juan Pérez', amount: 150.0, method: 'Tarjeta' },
-    { id: 2, date: '2025-01-19', client: 'Ana López', amount: 200.0, method: 'PayPal' },
-  ]);
+  const { payments, loading, error, fetchPayments } = useApiContext(); // Accede al contexto
+
+  // Recargar los pagos al montar el componente (opcional)
+  useEffect(() => {
+    fetchPayments();
+  }, [fetchPayments]);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
@@ -43,37 +45,14 @@ const Pagos = () => {
     link.click();
   };
 
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div>
       <div className='container-fluid'>
-        {/* Sección de Pagos */}
-        <div className='contenedor container-fluid table-responsive mt-1' id='pagos'>
-          <h2>Historial de Pagos</h2>
-          <p>A continuación se detallan los pagos realizados por los clientes.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Monto</th>
-                <th>Método</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paymentsData.map((payment) => (
-                <tr key={payment.id}>
-                  <td>{payment.date}</td>
-                  <td>{payment.client}</td>
-                  <td>${payment.amount.toFixed(2)}</td>
-                  <td>{payment.method}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button id='bi' onClick={() => downloadReport('pagos')}>
-            Descargar Informe
-          </button>
-        </div>
+        {/* Usar el componente PaymentTable */}
+        <PaymentTable payments={payments} onDownload={() => downloadReport('pagos')} />
       </div>
       <Footer />
     </div>
