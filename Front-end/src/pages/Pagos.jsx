@@ -1,7 +1,7 @@
 import '../assets/styles.css';
 import Footer from '../components/Footer';
 import { ApiContext } from '../context/ApiContext'; // Importa el contexto
-import PaymentTable from '../components/paymentTable'; // Importa el componente
+import PaymentTable from '../components/PaymentTable'; // Importa el componente
 import { useContext } from 'react';
 
 const Pagos = () => {

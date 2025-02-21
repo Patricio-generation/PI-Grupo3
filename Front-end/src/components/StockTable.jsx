@@ -2,10 +2,7 @@ const StockTable = ({ cabinsData, downloadReport }) => {
   return (
     <div className='contenedor container-fluid table-responsive mt-1' id='stock'>
       <h2>Gestión de Stock</h2>
-      <p>
-        A continuación se detallan los productos y servicios disponibles en el stock del
-        hotel.
-      </p>
+      <p>A continuación se detallan las cabañas registradas en el sistema.</p>
       <table>
         <thead>
           <tr>

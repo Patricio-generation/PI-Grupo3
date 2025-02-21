@@ -6,9 +6,10 @@ import ReservationsTable from '../components/ReservationsTable';
 import StockTable from '../components/StockTable';
 import { useContext } from 'react';
 import { ApiContext } from '../context/ApiContext';
+import PaymentTable from '../components/PaymentTable';
 
 const Inicio = () => {
-  const { reservations, cabins } = useContext(ApiContext);
+  const { reservations, cabins, payments } = useContext(ApiContext);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
@@ -52,6 +53,8 @@ const Inicio = () => {
           reservations={reservations}
           onDownload={() => downloadReport('reservas')}
         />
+        <PaymentTable payments={payments} onDownload={() => downloadReport('pagos')} />
+
         <div className='contenedor container-fluid mt-1'>
           <h2>Formulario de Contacto</h2>
           <FormularioSincronizado />
