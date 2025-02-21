@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
 import '../assets/styles.css';
 import Footer from '../components/Footer';
-import { useApiContext } from '../context/ApiContext'; // Importa el contexto
+import { ApiContext } from '../context/ApiContext'; // Importa el contexto
 import PaymentTable from '../components/paymentTable'; // Importa el componente
+import { useContext } from 'react';
 
 const Pagos = () => {
-  const { payments, loading, error, fetchPayments } = useApiContext(); // Accede al contexto
-
-  // Recargar los pagos al montar el componente (opcional)
-  useEffect(() => {
-    fetchPayments();
-  }, [fetchPayments]);
+  const { payments, loading, error } = useContext(ApiContext);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {

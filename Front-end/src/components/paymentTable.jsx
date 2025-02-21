@@ -1,5 +1,3 @@
-import React from 'react';
-
 function PaymentTable({ payments, onDownload }) {
   return (
     <div className='contenedor container-fluid table-responsive mt-1' id='pagos'>
@@ -17,10 +15,10 @@ function PaymentTable({ payments, onDownload }) {
         <tbody>
           {payments.map((payment) => (
             <tr key={payment._id}>
-              <td>{parseFecha(payment.date)}</td>
-              <td>{payment.client}</td>
+              <td>{parseFecha(payment.paymentDate)}</td>
+              <td>{payment.reservation.client.name}</td>
               <td>${payment.amount.toFixed(2)}</td>
-              <td>{payment.method}</td>
+              <td>{payment.paymentMethod}</td>
             </tr>
           ))}
         </tbody>

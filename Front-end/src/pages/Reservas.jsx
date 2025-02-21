@@ -1,4 +1,4 @@
-// src/pages/Reservas.jsx
+// src/pages/Reservas.jsxcd B
 import { useContext } from 'react';
 import '../assets/styles.css';
 import Footer from '../components/Footer';
