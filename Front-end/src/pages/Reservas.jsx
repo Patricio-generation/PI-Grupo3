@@ -50,7 +50,8 @@ const Reservas = () => {
           <table>
             <thead>
               <tr>
-                <th>Fecha</th>
+                <th>Fecha Check In</th>
+                <th>Fecha Check Out</th>
                 <th>Cliente</th>
                 <th>Habitación</th>
                 <th>Origen</th>
@@ -59,7 +60,8 @@ const Reservas = () => {
             <tbody>
               {reservationsData.map((reservation) => (
                 <tr key={reservation._id}>
-                  <td>{reservation.createdAt}</td>
+                  <td>{parseFecha(reservation.checkinDate)}</td>
+                  <td>{parseFecha(reservation.checkoutDate)}</td>
                   <td>{reservation.client.name}</td>
                   <td>{reservation.cabin.number}</td>
                   <td>{reservation.source}</td>
@@ -78,3 +80,10 @@ const Reservas = () => {
 };
 
 export default Reservas;
+
+
+function parseFecha(fechaStr) {
+  const fecha = new Date(fechaStr);
+
+  return fecha.toISOString().split("T")[0] // "YYYY-MM-DD"
+}

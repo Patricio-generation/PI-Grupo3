@@ -1,6 +1,8 @@
 import Card from './Card';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import '../assets/styles.css';
+import {useContext} from 'React'
+import {ApiContext} from '../context/ApiContext.jsx'
 
 const data = [
   { name: 'Ene', ventas: 4000 },
@@ -11,6 +13,8 @@ const data = [
 ];
 
 function Dashboard() {
+  const { reservations: reservationsData } = useContext(ApiContext);
+
   return (
     <div className='contenedor container-fluid table-responsive mt-1'>
       <div style={styles.dashboard}>
@@ -18,7 +22,7 @@ function Dashboard() {
         <div style={styles.metrics}>
           <Card title='Ventas Totales' value='$15,000' icon='💰' />
           <Card title='Usuarios Activos' value='1,200' icon='👥' />
-          <Card title='Órdenes Nuevas' value='45' icon='📦' />
+          <Card title='Total reservas' value={reservationsData.length} icon='📦' />
         </div>
         <div style={styles.chart}>
           <h2>Ventas Mensuales</h2>
