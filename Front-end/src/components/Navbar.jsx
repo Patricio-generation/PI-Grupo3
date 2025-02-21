@@ -5,7 +5,6 @@ import './Navbar.css';
 const routes = [
   { path: '/', icon: 'fa-home', text: 'Inicio' },
   { path: '/reservas', icon: 'fa-calendar-check', text: 'Reservas' },
-  { path: '/informe', icon: 'fa-file-invoice', text: 'Informe' },
   { path: '/stock', icon: 'fa-warehouse', text: 'Stock' },
   { path: '/pagos', icon: 'fa-dollar-sign', text: 'Pagos' },
 ];
