@@ -1,8 +1,8 @@
 import Card from './Card';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import '../assets/styles.css';
-import {useContext} from 'React'
-import {ApiContext} from '../context/ApiContext.jsx'
+import { useContext } from 'react';
+import { ApiContext } from '../context/ApiContext.jsx';
 
 const data = [
   { name: 'Ene', ventas: 4000 },
