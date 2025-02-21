@@ -1,14 +1,12 @@
 // src/pages/Stock.jsx
-import { useState } from 'react';
+import { useContext } from 'react';
 import '../assets/styles.css';
 import Footer from '../components/Footer';
+import { ApiContext } from '../context/ApiContext';
 
 const Stock = () => {
   // Estado para los datos de stock
-  const [stockData] = useState([
-    { id: 1, product: 'Toallas', quantity: 50, lastUpdated: '2025-01-20' },
-    { id: 2, product: 'Jabones', quantity: 200, lastUpdated: '2025-01-19' },
-  ]);
+  const { cabins: cabinsData } = useContext(ApiContext);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
@@ -56,17 +54,17 @@ const Stock = () => {
           <table>
             <thead>
               <tr>
-                <th>Producto</th>
-                <th>Cantidad Disponible</th>
-                <th>Última Actualización</th>
+                <th>Número</th>
+                <th>Estado</th>
+                <th>Precio</th>
               </tr>
             </thead>
             <tbody>
-              {stockData.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.product}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.lastUpdated}</td>
+              {cabinsData.map((cabin) => (
+                <tr key={cabin._id}>
+                  <td>{cabin.number}</td>
+                  <td>{cabin.status}</td>
+                  <td>{parseCabinPrice(cabin)}</td>
                 </tr>
               ))}
             </tbody>
@@ -79,6 +77,12 @@ const Stock = () => {
       <Footer />
     </div>
   );
+};
+
+const parseCabinPrice = (cabin) => {
+  const priceNumber = parseFloat(cabin.price);
+  const currency = cabin.currency || 'CLP';
+  return `$${priceNumber} ${currency}`;
 };
 
 export default Stock;
