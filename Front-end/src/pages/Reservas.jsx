@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import '../assets/styles.css';
 import Footer from '../components/Footer';
+import ReservationsTable from '../components/ReservationsTable';
 import { ApiContext } from '../context/ApiContext';
 
 const Reservas = () => {
@@ -30,6 +31,7 @@ const Reservas = () => {
         .map((cell) => cell.innerText)
         .join(',');
       data += rowData + '\n';
+      // Crear y descargar el archivo CSV
     });
 
     // Crear y descargar el archivo CSV
@@ -43,36 +45,10 @@ const Reservas = () => {
   return (
     <div>
       <div className='container-fluid'>
-        {/* Sección de Reservas */}
-        <div className='contenedor container-fluid table-responsive mt-1' id='reservas'>
-          <h2>Resumen de Reservas</h2>
-          <p>A continuación se detallan las reservas recientes realizadas en el hotel.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Fecha Check In</th>
-                <th>Fecha Check Out</th>
-                <th>Cliente</th>
-                <th>Habitación</th>
-                <th>Origen</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reservationsData.map((reservation) => (
-                <tr key={reservation._id}>
-                  <td>{parseFecha(reservation.checkinDate)}</td>
-                  <td>{parseFecha(reservation.checkoutDate)}</td>
-                  <td>{reservation.client.name}</td>
-                  <td>{reservation.cabin.number}</td>
-                  <td>{reservation.source}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button id='bi' onClick={() => downloadReport('reservas')}>
-            Descargar Informe
-          </button>
-        </div>
+        <ReservationsTable
+          reservations={reservationsData}
+          onDownload={() => downloadReport('reservas')}
+        />
       </div>
       <Footer />
     </div>
@@ -80,10 +56,3 @@ const Reservas = () => {
 };
 
 export default Reservas;
-
-
-function parseFecha(fechaStr) {
-  const fecha = new Date(fechaStr);
-
-  return fecha.toISOString().split("T")[0] // "YYYY-MM-DD"
-}

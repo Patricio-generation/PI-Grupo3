@@ -13,7 +13,7 @@ const data = [
 ];
 
 function Dashboard() {
-  const { reservations: reservationsData } = useContext(ApiContext);
+  const { reservations, users } = useContext(ApiContext);
 
   return (
     <div className='contenedor container-fluid table-responsive mt-1'>
@@ -21,8 +21,8 @@ function Dashboard() {
         <h1>Mi Dashboard</h1>
         <div style={styles.metrics}>
           <Card title='Ventas Totales' value='$15,000' icon='💰' />
-          <Card title='Usuarios Activos' value='1,200' icon='👥' />
-          <Card title='Total reservas' value={reservationsData.length} icon='📦' />
+          <Card title='Usuarios Activos' value={users.length} icon='👥' />
+          <Card title='Total reservas' value={reservations.length} icon='📦' />
         </div>
         <div style={styles.chart}>
           <h2>Ventas Mensuales</h2>

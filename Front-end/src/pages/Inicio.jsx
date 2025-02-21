@@ -2,8 +2,13 @@ import '../assets/styles.css';
 import Footer from '../components/Footer';
 import FormularioSincronizado from '../components/FormularioSincronizado'; // Importa el formulario
 import Dashboard from '../components/Dashboard';
+import ReservationsTable from '../components/ReservationsTable';
+import { useContext } from 'react';
+import { ApiContext } from '../context/ApiContext';
 
 const Inicio = () => {
+  const { reservations } = useContext(ApiContext);
+
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -77,38 +82,11 @@ const Inicio = () => {
           </button>
         </div>
 
-        {/* Sección de Reservas */}
-        <div className='contenedor container-fluid table-responsive mt-1' id='reservas'>
-          <h2>Reservas</h2>
-          <p>Resumen de las reservas realizadas recientemente.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Habitación</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2025-01-20</td>
-                <td>Juan Pérez</td>
-                <td>Suite Deluxe</td>
-                <td>Confirmada</td>
-              </tr>
-              <tr>
-                <td>2025-01-19</td>
-                <td>Ana López</td>
-                <td>Habitación Doble</td>
-                <td>Cancelada</td>
-              </tr>
-            </tbody>
-          </table>
-          <button id='bi' onClick={() => downloadReport('reservas')}>
-            Descargar Informe
-          </button>
-        </div>
+        {/* Tabla de Reservas */}
+        <ReservationsTable
+          reservations={reservations}
+          onDownload={() => downloadReport('reservas')}
+        />
 
         {/* Sección de Pagos */}
         <div className='contenedor container-fluid table-responsive mt-1' id='pagos'>
