@@ -9,7 +9,7 @@ const API = axios.create({
 API.interceptors.request.use(
   (config) => {
     // Asegúrate de tener la API Key en tu archivo .env
-    config.headers['x-api-key'] = import.meta.env.REACT_APP_API_KEY;
+    config.headers['x-api-key'] = import.meta.env.VITE_API_KEY;
     return config;
   },
   (error) => {
