@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState, useEffect } from 'react';
+import API from '../services/Api';
 
 export const ApiContext = createContext();
 
@@ -8,8 +8,6 @@ export const ApiProvider = ({ children }) => {
   const [clients, setClients] = useState([]);
   const [reservations, setReservations] = useState([]);
   const [payments, setPayments] = useState([]);
-  const [historicalPayments, setHistoricalPayments] = useState([]);
-  const [historicalReservations, setHistoricalReservations] = useState([]);
   const [tinajaBookings, setTinajaBookings] = useState([]);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,36 +19,24 @@ export const ApiProvider = ({ children }) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [
-        cabinRes,
-        clientRes,
-        reservationRes,
-        paymentRes,
-        historicalPaymentRes,
-        historicalReservationRes,
-        tinajaBookingRes,
-        userRes,
-      ] = await Promise.all([
-        axios.get("/api/cabins"),
-        axios.get("/api/clients"),
-        axios.get("/api/reservations"),
-        axios.get("/api/payments"),
-        axios.get("/api/historical-payments"),
-        axios.get("/api/historical-reservations"),
-        axios.get("/api/tinaja-bookings"),
-        axios.get("/api/users"),
-      ]);
+      const [cabinRes, clientRes, reservationRes, paymentRes, tinajaBookingRes, userRes] =
+        await Promise.all([
+          API.get('/cabins'),
+          API.get('/clients'),
+          API.get('/reservations'),
+          API.get('/payments'),
+          API.get('/tinajas'),
+          API.get('/users'),
+        ]);
 
       setCabins(cabinRes.data);
       setClients(clientRes.data);
       setReservations(reservationRes.data);
       setPayments(paymentRes.data);
-      setHistoricalPayments(historicalPaymentRes.data);
-      setHistoricalReservations(historicalReservationRes.data);
       setTinajaBookings(tinajaBookingRes.data);
       setUsers(userRes.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     } finally {
       setLoading(false);
     }
@@ -63,8 +49,6 @@ export const ApiProvider = ({ children }) => {
         clients,
         reservations,
         payments,
-        historicalPayments,
-        historicalReservations,
         tinajaBookings,
         users,
         loading,

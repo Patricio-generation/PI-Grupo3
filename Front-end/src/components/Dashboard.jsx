@@ -1,7 +1,8 @@
-import React from 'react';
 import Card from './Card';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import '../assets/styles.css';
+import { useContext } from 'react';
+import { ApiContext } from '../context/ApiContext.jsx';
 
 const data = [
   { name: 'Ene', ventas: 4000 },
@@ -12,28 +13,29 @@ const data = [
 ];
 
 function Dashboard() {
+  const { reservations, users } = useContext(ApiContext);
+
   return (
-    <div class="contenedor container-fluid table-responsive mt-1">
-        <div style={styles.dashboard}>
+    <div className='contenedor container-fluid table-responsive mt-1'>
+      <div style={styles.dashboard}>
         <h1>Mi Dashboard</h1>
         <div style={styles.metrics}>
-          <Card title="Ventas Totales" value="$15,000" icon="💰" />
-          <Card title="Usuarios Activos" value="1,200" icon="👥" />
-          <Card title="Órdenes Nuevas" value="45" icon="📦" />
+          <Card title='Ventas Totales' value='$15,000' icon='💰' />
+          <Card title='Usuarios Activos' value={users.length} icon='👥' />
+          <Card title='Total reservas' value={reservations.length} icon='📦' />
         </div>
         <div style={styles.chart}>
           <h2>Ventas Mensuales</h2>
           <BarChart width={500} height={300} data={data}>
-            <XAxis dataKey="name" />
+            <XAxis dataKey='name' />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="ventas" fill="#8884d8" />
+            <Bar dataKey='ventas' fill='#8884d8' />
           </BarChart>
         </div>
       </div>
     </div>
-    
   );
 }
 
