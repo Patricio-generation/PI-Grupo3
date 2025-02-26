@@ -4,6 +4,7 @@ require("dotenv").config(); ///carga las variables de entorno desde env. //Permi
 
 function apiKeyAuth(req, res, next) { //Define el middleware apiKeyAuth, que se ejecutará antes de ciertas rutas.
     const apiKey = req.header("x-api-key"); // Obtener API Key desde los headers //Busca en los headers (x-api-key) la clave enviada por el cliente.
+    console.log('API Key recibida:', apiKey);
 
     if (!apiKey) {
         return res.status(401).json({ message: "API Key requerida" }); //Si no se envió una API Key, bloquea la solicitud con un error 401 Unauthorized. // Evita que clientes sin clave accedan a la API.

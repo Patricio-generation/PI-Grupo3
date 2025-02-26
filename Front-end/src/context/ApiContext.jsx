@@ -10,10 +10,13 @@ export const ApiProvider = ({ children }) => {
   const [payments, setPayments] = useState([]);
   const [tinajaBookings, setTinajaBookings] = useState([]);
   const [users, setUsers] = useState([]);
+  const [historicalReservations, setHistoricalReservations] = useState([]);
+  const [historicalPayments, setHistoricalPayments] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchData();
+    fetchHistoricalData();
   }, []);
 
   const fetchData = async () => {
@@ -42,6 +45,23 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
+  const fetchHistoricalData = async () => {
+    setLoading(true);
+    try {
+      const [historicalResRes, historicalPayRes] = await Promise.all([
+        API.get('/historical/reservations'),
+        API.get('/historical/payments'),
+      ]);
+
+      setHistoricalReservations(historicalResRes.data);
+      setHistoricalPayments(historicalPayRes.data);
+    } catch (error) {
+      console.error('Error fetching historical data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ApiContext.Provider
       value={{
@@ -51,8 +71,11 @@ export const ApiProvider = ({ children }) => {
         payments,
         tinajaBookings,
         users,
+        historicalReservations,
+        historicalPayments,
         loading,
         fetchData,
+        fetchHistoricalData,
       }}
     >
       {children}
