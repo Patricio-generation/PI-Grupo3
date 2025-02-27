@@ -5,7 +5,7 @@ import { ApiContext } from '../context/ApiContext';
 import StockTable from '../components/StockTable';
 
 const Stock = () => {
-  const { cabins: cabinsData } = useContext(ApiContext);
+  const { cabins } = useContext(ApiContext);
 
   const downloadReport = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -40,7 +40,7 @@ const Stock = () => {
   return (
     <div>
       <div className='container-fluid'>
-        <StockTable cabinsData={cabinsData} downloadReport={downloadReport} />
+        <StockTable cabinsData={cabins} downloadReport={downloadReport} />
       </div>
       <Footer />
     </div>

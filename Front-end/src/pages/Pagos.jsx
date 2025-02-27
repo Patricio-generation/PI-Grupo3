@@ -3,9 +3,10 @@ import Footer from '../components/Footer';
 import { ApiContext } from '../context/ApiContext'; // Importa el contexto
 import PaymentTable from '../components/PaymentTable'; // Importa el componente
 import { useContext } from 'react';
+import HistoricalpaymentsTable from '../components/HistoricalPaymentsTable';
 
 const Pagos = () => {
-  const { payments, loading, error } = useContext(ApiContext);
+  const { payments, historicalPayments, loading, error } = useContext(ApiContext);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
@@ -46,8 +47,13 @@ const Pagos = () => {
   return (
     <div>
       <div className='container-fluid'>
-        {/* Usar el componente PaymentTable */}
         <PaymentTable payments={payments} onDownload={() => downloadReport('pagos')} />
+      </div>
+      <div className='container-fluid'>
+        <HistoricalpaymentsTable
+          historicalPayments={historicalPayments}
+          onDownload={() => downloadReport('pagos-historicos')}
+        />
       </div>
       <Footer />
     </div>

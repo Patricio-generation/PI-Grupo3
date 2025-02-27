@@ -7,9 +7,12 @@ import StockTable from '../components/StockTable';
 import { useContext } from 'react';
 import { ApiContext } from '../context/ApiContext';
 import PaymentTable from '../components/PaymentTable';
+import HistoricalreservationsTable from '../components/HistoricalReservationsTable';
+import HistoricalpaymentsTable from '../components/HistoricalPaymentsTable';
 
 const Inicio = () => {
-  const { reservations, cabins, payments } = useContext(ApiContext);
+  const { reservations, cabins, payments, historicalReservations, historicalPayments } =
+    useContext(ApiContext);
 
   // Función para descargar el informe en formato CSV
   const downloadReport = (sectionId) => {
@@ -54,7 +57,14 @@ const Inicio = () => {
           onDownload={() => downloadReport('reservas')}
         />
         <PaymentTable payments={payments} onDownload={() => downloadReport('pagos')} />
-
+        <HistoricalreservationsTable
+          historicalReservations={historicalReservations}
+          onDownload={() => downloadReport('reservas-historicas')}
+        />{' '}
+        <HistoricalpaymentsTable
+          historicalPayments={historicalPayments}
+          onDownload={() => downloadReport('pagos-historicos')}
+        />
         <div className='contenedor container-fluid mt-1'>
           <h2>Formulario de Contacto</h2>
           <FormularioSincronizado />
